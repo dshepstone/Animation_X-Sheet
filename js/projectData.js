@@ -20,6 +20,9 @@ class ProjectData {
         this.frameCount = 48;
         this.rows = [];
 
+        // NEW: Custom column names
+        this.customColumnNames = {};
+
         this.audio = {
             fileName: null, filePath: null, audioBuffer: null,
             duration: 0, sampleRate: 0, numberOfChannels: 0,
@@ -57,6 +60,10 @@ class ProjectData {
         };
         this.frameCount = parseInt(frameCount) || 48;
         this.rows = [];
+
+        // Reset custom column names
+        this.customColumnNames = {};
+
         this._initializeRows();
         this.clearAudioData(false);
         this.drawingLayers = [{ name: "foreground", visible: true, objects: [] }];
@@ -79,7 +86,11 @@ class ProjectData {
 
     _initializeRows() {
         this.rows = [];
-        const defaultCellData = { action: "", dialogue: "", soundFx: "", techNotes: "", camera: "" };
+        // Updated to include the new columns
+        const defaultCellData = {
+            action: "", dialogue: "", soundFx: "", techNotes: "",
+            extra1: "", extra2: "", extra3: "", camera: ""
+        };
         for (let i = 0; i < this.frameCount; i++) {
             this.rows.push({ ...defaultCellData });
         }
@@ -93,7 +104,10 @@ class ProjectData {
         this.frameCount = count;
 
         if (count > oldCount) {
-            const defaultCellData = { action: "", dialogue: "", soundFx: "", techNotes: "", camera: "" };
+            const defaultCellData = {
+                action: "", dialogue: "", soundFx: "", techNotes: "",
+                extra1: "", extra2: "", extra3: "", camera: ""
+            };
             for (let i = oldCount; i < count; i++) {
                 this.rows.push({ ...defaultCellData });
             }
@@ -120,6 +134,45 @@ class ProjectData {
                 document.dispatchEvent(new CustomEvent('projectDataChanged', { detail: { reason: 'cellData', frameIndex, columnKey } }));
             }
         }
+    }
+
+    // NEW: Custom column name methods
+    getCustomColumnName(columnKey) {
+        if (!this.customColumnNames || typeof this.customColumnNames !== 'object') {
+            return null;
+        }
+        return this.customColumnNames[columnKey] || null;
+    }
+
+    setCustomColumnName(columnKey, customName) {
+        if (!this.customColumnNames) {
+            this.customColumnNames = {};
+        }
+
+        if (customName && customName.trim() !== '') {
+            this.customColumnNames[columnKey] = customName.trim();
+            console.log(`Custom column name set: ${columnKey} = "${customName.trim()}"`);
+        } else {
+            delete this.customColumnNames[columnKey];
+        }
+        this.isModified = true;
+        document.dispatchEvent(new CustomEvent('projectDataChanged', {
+            detail: { reason: 'columnRenamed', columnKey, customName: customName ? customName.trim() : null }
+        }));
+    }
+
+    resetCustomColumnName(columnKey) {
+        if (!this.customColumnNames) {
+            this.customColumnNames = {};
+            return;
+        }
+
+        delete this.customColumnNames[columnKey];
+        this.isModified = true;
+        console.log(`Custom column name reset: ${columnKey}`);
+        document.dispatchEvent(new CustomEvent('projectDataChanged', {
+            detail: { reason: 'columnRenamed', columnKey, customName: null }
+        }));
     }
 
     loadAudioData(audioBuffer, fileName, filePath = null) {
@@ -214,6 +267,7 @@ class ProjectData {
             metadata: { ...this.metadata },
             frameCount: this.frameCount,
             rows: JSON.parse(JSON.stringify(this.rows)),
+            customColumnNames: { ...this.customColumnNames }, // NEW: Include custom column names
             audio: {
                 fileName: this.audio.fileName,
                 filePath: this.audio.filePath,
@@ -237,6 +291,12 @@ class ProjectData {
         this.projectName = data.projectName || `AnimationXSheet_${new Date().toISOString().slice(0, 10)}`;
         this.metadata = { ...this.metadata, ...(data.metadata || {}) };
         this.frameCount = data.frameCount || 48;
+
+        // Load custom column names (handle backward compatibility)
+        this.customColumnNames = {};
+        if (data.customColumnNames && typeof data.customColumnNames === 'object') {
+            this.customColumnNames = { ...data.customColumnNames };
+        }
 
         this._initializeRows();
         if (data.rows) {

@@ -108,7 +108,6 @@ window.XSheetApp.ExportHandler = {
         const metadataFields = [
             { label: 'Project #', value: document.getElementById('metaProjectNumber')?.value || '' },
             { label: 'Date', value: document.getElementById('metaDate')?.value || '' },
-            { label: 'Page #', value: document.getElementById('metaPageNumber')?.value || '1' },
             { label: 'Animator', value: document.getElementById('metaAnimatorName')?.value || '' },
             { label: 'Version', value: document.getElementById('metaVersionNumber')?.value || '1.0' },
             { label: 'Shot #', value: document.getElementById('metaShotNumber')?.value || '' }
@@ -182,6 +181,34 @@ window.XSheetApp.ExportHandler = {
         });
     },
 
+    // Helper method to get column display name (including custom names)
+    getColumnDisplayName: function (columnKey) {
+        // First check for custom names from project data
+        if (this.projectData && typeof this.projectData.getCustomColumnName === 'function') {
+            const customName = this.projectData.getCustomColumnName(columnKey);
+            if (customName && customName.trim() !== '') {
+                return customName;
+            }
+        }
+
+        // Fallback to default names - Updated to include new columns
+        const defaultNames = {
+            "action": "Action/Description",
+            "frameNumber1": "Fr",
+            "audioWaveform": "Audio Waveform",
+            "dialogue": "Dialogue",
+            "soundFx": "Sound FX",
+            "techNotes": "Tech. Notes",
+            "extra1": "Extra",
+            "extra2": "Extra",
+            "extra3": "Extra",
+            "frameNumber2": "Fr",
+            "camera": "Camera Moves"
+        };
+
+        return defaultNames[columnKey] || columnKey;
+    },
+
     createExportTable: function (container, originalRowHeight, originalTheadHeight) {
         if (!originalRowHeight || Number.isNaN(originalRowHeight) || originalRowHeight <= 0) {
             // console.warn("createExportTable: originalRowHeight invalid, recalculating.");
@@ -220,16 +247,26 @@ window.XSheetApp.ExportHandler = {
             height: originalTheadHeight + 'px'
         });
 
+        // UPDATED: Use the updated LOGICAL_COLUMNS array with new columns
         const LOGICAL_COLUMNS = [
-            { key: "action", displayName: "Action/Description" }, { key: "frameNumber1", displayName: "Fr" },
-            { key: "audioWaveform", displayName: "Audio Waveform" }, { key: "dialogue", displayName: "Dialogue" },
-            { key: "soundFx", displayName: "Sound FX" }, { key: "techNotes", displayName: "Tech. Notes" },
-            { key: "frameNumber2", displayName: "Fr" }, { key: "camera", displayName: "Camera Moves" }
+            { key: "action", displayName: "Action/Description" },
+            { key: "frameNumber1", displayName: "Fr" },
+            { key: "audioWaveform", displayName: "Audio Waveform" },
+            { key: "dialogue", displayName: "Dialogue" },
+            { key: "soundFx", displayName: "Sound FX" },
+            { key: "techNotes", displayName: "Tech. Notes" },
+            { key: "extra1", displayName: "Extra" },  // NEW
+            { key: "extra2", displayName: "Extra" },  // NEW
+            { key: "extra3", displayName: "Extra" },  // NEW
+            { key: "frameNumber2", displayName: "Fr" },
+            { key: "camera", displayName: "Camera Moves" }
         ];
+
         const originalHeaderCells = originalTable.querySelectorAll('thead th');
         LOGICAL_COLUMNS.forEach((col, index) => {
             const th = document.createElement('th');
-            th.textContent = col.displayName;
+            // Use custom column name if available
+            th.textContent = this.getColumnDisplayName(col.key);
             Object.assign(th.style, {
                 border: '1px solid #999', fontWeight: 'bold', textAlign: 'center',
                 height: originalTheadHeight + 'px'
@@ -512,22 +549,22 @@ window.XSheetApp.ExportHandler = {
     },
 
     // NEW: Add page numbers to multi-page PDFs
-    _addPageNumber: function(pdf, currentPage, totalPages, marginPt, pageWidthPt, pageHeightPt) {
+    _addPageNumber: function (pdf, currentPage, totalPages, marginPt, pageWidthPt, pageHeightPt) {
         // Only add page numbers if there are multiple pages
         if (totalPages <= 1) return;
-        
+
         pdf.setFontSize(10);
         pdf.setTextColor(100, 100, 100); // Gray color
-        
+
         const pageText = `Page ${currentPage} of ${totalPages}`;
         const textWidth = pdf.getTextWidth(pageText);
-        
+
         // Position at bottom center of page
         const xPos = (pageWidthPt - textWidth) / 2;
         const yPos = pageHeightPt - (marginPt / 2); // Half margin from bottom
-        
+
         pdf.text(pageText, xPos, yPos);
-        
+
         // Reset text color to black for any subsequent text
         pdf.setTextColor(0, 0, 0);
     },
@@ -644,7 +681,7 @@ window.XSheetApp.ExportHandler = {
                 const xOffset = marginPt;
                 const yOffset = marginPt + (pdfPrintableHeightPt - finalPdfImageTotalHeightPt) / 2;
                 pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalPdfImageWidthPt, finalPdfImageTotalHeightPt);
-                
+
                 // Add page number (will only show if totalPages > 1, which won't happen here, but keeping consistent)
                 this._addPageNumber(pdf, 1, totalPages, marginPt, pageWidthPt, pageHeightPt);
             } else {
@@ -669,10 +706,10 @@ window.XSheetApp.ExportHandler = {
                     const segmentDisplayHeightPt = segmentSourceHeightPx * (finalPdfImageWidthPt / pageCanvas.width);
 
                     pdf.addImage(segmentImgData, 'PNG', marginPt, marginPt, finalPdfImageWidthPt, segmentDisplayHeightPt);
-                    
+
                     // NEW: Add page number to this page
                     this._addPageNumber(pdf, i + 1, totalPages, marginPt, pageWidthPt, pageHeightPt);
-                    
+
                     sourceY_on_pageCanvas_px += segmentSourceHeightPx;
                 }
             }

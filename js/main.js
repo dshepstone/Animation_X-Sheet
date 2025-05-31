@@ -128,7 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAudioInfo();
     updateAudioScrubSlider();
     updatePlaybackButtonsUI(false);
-    if (elements.statusBar) elements.statusBar.textContent = "Status: Ready";
+    if (elements.statusBar) elements.statusBar.textContent = "Status: Ready - Right-click column headers with ✏️ to rename";
+
+    // Show rename tip after a delay, then reset to Ready
+    setTimeout(() => {
+        if (elements.statusBar && elements.statusBar.textContent.includes("Right-click")) {
+            elements.statusBar.textContent = "Status: Ready";
+        }
+    }, 8000);
 
     // Enhanced Audio Import - now supports project-aware importing
     elements.btnImportAudio?.addEventListener('click', async (e) => {
@@ -265,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('projectDataChanged', (e) => {
         const reason = e.detail?.reason;
 
-        if (xsheet?.render && (reason === 'frameCount' || reason === 'newProject' || reason === 'projectLoaded' || reason === 'audioCleared' || reason === 'fpsChanged')) {
+        if (xsheet?.render && (reason === 'frameCount' || reason === 'newProject' || reason === 'projectLoaded' || reason === 'audioCleared' || reason === 'fpsChanged' || reason === 'columnRenamed')) {
             xsheet.render();
         }
         if (xsheet?.renderVerticalWaveform && (reason === 'audioLoaded' || reason === 'audioCleared' || reason === 'frameCount' || reason === 'fpsChanged' || reason === 'projectLoaded' || reason === 'newProject')) {
@@ -296,6 +303,17 @@ document.addEventListener('DOMContentLoaded', () => {
             updateAudioScrubSlider();
             updatePlaybackButtonsUI(false);
             updateFramesInput();
+        } else if (reason === 'columnRenamed') {
+            // Column was renamed - headers will be updated by xsheet.render() above
+            if (elements.statusBar) {
+                const columnKey = e.detail?.columnKey;
+                const customName = e.detail?.customName;
+                if (customName) {
+                    elements.statusBar.textContent = `Status: Column "${columnKey}" renamed to "${customName}"`;
+                } else {
+                    elements.statusBar.textContent = `Status: Column "${columnKey}" name reset to default`;
+                }
+            }
         }
     });
 
@@ -386,5 +404,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    console.log("Main app with Project Management setup complete.");
+    console.log("Main app with Project Management and Column Renaming setup complete.");
 });
