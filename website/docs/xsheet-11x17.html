@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>3D Animation X-Sheet (11" x 17" - 96 Frames)</title>
+    <style>
+        @page {
+            size: tabloid portrait;
+            margin: 0.25in;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 9pt;
+            line-height: 1.1;
+            margin: 0;
+            padding: 0;
+            max-width: 11in;
+            max-height: 17in;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        .title {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-bottom: 3px;
+        }
+
+        .metadata div {
+            border: 1px solid #000;
+            padding: 1px 3px;
+            font-size: 8pt;
+        }
+
+        .metadata span {
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 0px 2px;
+            vertical-align: top;
+            height: 17.7px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        th {
+            background-color: #eee;
+            font-weight: bold;
+            text-align: center;
+            font-size: 8pt;
+        }
+
+        .action-col {
+            width: 18%;
+        }
+
+        .frame-col {
+            width: 4%;
+            text-align: center;
+        }
+
+        .dialogue-col {
+            width: 10%;
+        }
+
+        .sound-col {
+            width: 10%;
+        }
+
+        .technical-col {
+            width: 10%;
+        }
+
+        .extra1-col {
+            width: 10%;
+            text-align: center;
+        }
+
+        .extra2-col {
+            width: 10%;
+        }
+
+        .camera-col {
+            width: 14%;
+        }
+
+        /* Bold border every 8 frames */
+        tbody tr:nth-child(8n) td {
+            border-bottom: 2px solid #000 !important;
+            font-weight: bold;
+        }
+
+        /* Double border every 24 frames */
+        tbody tr:nth-child(24n) td {
+            border-bottom: 4px double #000 !important;
+            font-weight: bold;
+        }
+
+        /* Repeat header when printing */
+        thead {
+            display: table-header-group;
+        }
+
+        .footer {
+            font-size: 7pt;
+            text-align: center;
+            margin-top: 2px;
+            line-height: 1;
+            color: #333;
+            font-style: italic;
+        }
+
+        @media print {
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            .footer {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">3D ANIMATION X-SHEET</div>
+    </div>
+    <div class="metadata">
+        <div><span>Project #:</span></div>
+        <div><span>DATE:</span></div>
+        <div><span>PAGE #:</span></div>
+        <div><span>ANIMATOR:</span></div>
+        <div><span>VERSION:</span></div>
+        <div><span>Shot #:</span></div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="action-col">Action/Description</th>
+                <th class="frame-col">Fr</th>
+                <th class="dialogue-col">Dialogue</th>
+                <th class="sound-col">Sound FX</th>
+                <th class="technical-col">Tech. Notes</th>
+                <th class="extra1-col">Extra 1</th>
+                <th class="extra2-col">Extra 2</th>
+                <th class="frame-col">Fr</th>
+                <th class="camera-col">Camera Moves</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be populated by script -->
+        </tbody>
+    </table>
+    <div class="footer">
+        Bold lines mark 8-frame intervals. Double lines mark 24-frame intervals (24fps). Left columns track character
+        actions, middle columns for technical notes, right for camera moves.
+    </div>
+    <script>
+        (function () {
+            const tbody = document.querySelector('tbody');
+            const classes = ['action-col', 'frame-col', 'dialogue-col', 'sound-col', 'technical-col', 'extra1-col', 'extra2-col', 'frame-col', 'camera-col'];
+            for (let i = 1; i <= 96; i++) {
+                const tr = document.createElement('tr');
+                classes.forEach(cls => {
+                    const td = document.createElement('td');
+                    td.className = cls;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            }
+        })();
+    </script>
+</body>
+
+</html>

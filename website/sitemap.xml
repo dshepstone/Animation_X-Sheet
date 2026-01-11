@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://animationxsheet.com/</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Main Pages -->
+    <url>
+        <loc>https://animationxsheet.com/how-to-use</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/help</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/download</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Alternative URLs with .php extension (for compatibility) -->
+    <url>
+        <loc>https://animationxsheet.com/index.php</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/how-to-use.php</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/help.php</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/download.php</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Web Application (if hosting the actual tool) -->
+    <!-- 
+    <url>
+        <loc>https://app.animationxsheet.com/</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    -->
+
+    <!-- Help Sections (Deep linking to specific help topics) -->
+    <url>
+        <loc>https://animationxsheet.com/help#faq</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/help#troubleshooting</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/help#system-requirements</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- How-to Guide Sections -->
+    <url>
+        <loc>https://animationxsheet.com/how-to-use#getting-started</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/how-to-use#project-management</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/how-to-use#audio-workflow</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/how-to-use#drawing-tools</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/how-to-use#exporting</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Download Options -->
+    <url>
+        <loc>https://animationxsheet.com/download#installation</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/download#github-repository</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- Future pages that might be added -->
+    <!--
+    <url>
+        <loc>https://animationxsheet.com/blog</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/tutorials</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/community</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/changelog</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/contact</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/about</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/privacy-policy</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://animationxsheet.com/terms-of-service</loc>
+        <lastmod>2024-12-21</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.2</priority>
+    </url>
+    -->
+
+</urlset>

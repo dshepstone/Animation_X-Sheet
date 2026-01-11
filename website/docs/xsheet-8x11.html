@@ -1,0 +1,800 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3D Animation Production Sheet (8" x 10" - 48 Frames)</title>
+    <style>
+        @page {
+            size: letter portrait;
+            margin: 0.25in; /* Reduced margin to maximize printable area */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 9pt;
+            line-height: 1.1; /* Reduced line height */
+            margin: 0;
+            padding: 0;
+            max-width: 8in;
+            max-height: 10in;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2px; /* Reduced to save space */
+        }
+        .title {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-bottom: 2px; /* Reduced from 3px */
+        }
+        .metadata {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2px; /* Reduced gap */
+            margin-bottom: 3px; /* Reduced bottom margin */
+        }
+        .metadata div {
+            border: 1px solid #000;
+            padding: 1px 3px; /* Reduced padding */
+            font-size: 8pt;
+        }
+        .metadata span {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 0px 2px; /* Minimum vertical padding */
+            vertical-align: top;
+            height: 17.9px; /* Slightly adjusted to fit footer */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        th {
+            background-color: #eee;
+            font-weight: bold;
+            text-align: center;
+            font-size: 8pt;
+        }
+        .action-col {
+            width: 18%; /* Slightly reduced */
+        }
+        .frame-col {
+            width: 4%; /* Reduced width */
+            text-align: center;
+        }
+        .dialogue-col {
+            width: 10%; /* Adjusted width */
+        }
+        .sound-col {
+            width: 10%; /* Adjusted width */
+        }
+        .technical-col {
+            width: 10%; /* Adjusted width */
+        }
+        .extra1-col {
+            width: 10%; /* Adjusted width */
+            text-align: center;
+        }
+        .extra2-col {
+            width: 10%; /* Adjusted width */
+        }
+        .camera-col {
+            width: 14%; /* Reduced width */
+        }
+        
+        /* Target every 8th frame consistently */
+        tr:nth-child(8n) td {
+            border-bottom: 2px solid #000 !important;
+            font-weight: bold;
+        }
+        
+        /* Special double borders for frames 24 and 48 */
+        tr.frame-24 td, tr.frame-48 td, tr:nth-child(24) td, tr:nth-child(48) td {
+            border-bottom: 4px double #000 !important;
+            font-weight: bold;
+        }
+        
+        /* Also use class-based selectors as a fallback */
+        tr.frame-8 td, tr.frame-16 td, tr.frame-32 td, tr.frame-40 td {
+            border-bottom: 2px solid #000 !important;
+            font-weight: bold;
+        }
+        
+        /* Keep rows with their frame groups together when possible */
+        tr.frame-1, tr.frame-9, tr.frame-17, tr.frame-25, tr.frame-33, tr.frame-41 {
+            page-break-before: auto;
+        }
+        
+        /* Repeat header on each page */
+        thead {
+            display: table-header-group;
+        }
+        
+        /* Footer styling */
+        .footer {
+            font-size: 7pt;
+            text-align: center;
+            margin-top: 2px;
+            padding: 0;
+            line-height: 1;
+            color: #333;
+            font-style: italic;
+        }
+        
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 0.25in;
+            }
+            
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                height: 100%;
+            }
+            
+            body::before, body::after {
+                content: none !important;
+                display: none !important;
+            }
+            
+            /* Critical - ensure all borders print correctly */
+            tr[class^="frame-"] td {
+                border: 1px solid #000;
+            }
+            
+            /* Force page breaks to appear after frames divisible by 24 if needed */
+            tr.frame-24, tr.frame-48, tr:nth-child(24), tr:nth-child(48) {
+                page-break-after: auto;
+            }
+            
+            /* Prevent page breaks in the middle of 8-frame blocks */
+            tr:nth-child(8n+1) {
+                page-break-before: auto;
+                page-break-after: avoid;
+            }
+            
+            /* Re-apply the 8-frame pattern consistently */
+            tr:nth-child(8n) td {
+                border-bottom: 2px solid #000 !important;
+                font-weight: bold;
+            }
+            
+            /* Double line for frames 24 and 48 (which are also divisible by 8) */
+            tr.frame-24 td, tr.frame-48 td, tr:nth-child(24) td, tr:nth-child(48) td {
+                border-bottom: 4px double #000 !important;
+                font-weight: bold;
+            }
+            
+            /* Repeat table headers on each page */
+            thead {
+                display: table-header-group;
+            }
+            
+            /* Make sure footer prints properly and doesn't cause a page break */
+            .footer {
+                position: relative;
+                page-break-before: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">3D ANIMATION X-SHEET</div>
+    </div>
+
+    <div class="metadata">
+        <div><span>Project #:</span></div>
+        <div><span>DATE:</span></div>
+        <div><span>PAGE #:</span></div>
+        <div><span>ANIMATOR:</span></div>
+        <div><span>VERSION:</span></div>
+        <div><span>Shot #</span></div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th class="action-col">Action/Description</th>
+                <th class="frame-col">Fr</th>
+                <th class="dialogue-col">Dialogue</th>
+                <th class="sound-col">Sound FX</th>
+                <th class="technical-col">Tech. Notes</th>
+                <th class="extra1-col">Extra 1</th>
+                <th class="extra2-col">Extra 2</th>
+                <th class="frame-col">Fr</th>
+                <th class="camera-col">Camera Moves</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Row 1 -->
+            <tr class="frame-1">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="frame-2">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="frame-3">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 4 -->
+            <tr class="frame-4">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 5 -->
+            <tr class="frame-5">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 6 -->
+            <tr class="frame-6">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 7 -->
+            <tr class="frame-7">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 8 - Bold border -->
+            <tr class="frame-8">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 9 -->
+            <tr class="frame-9">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 10 -->
+            <tr class="frame-10">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 11 -->
+            <tr class="frame-11">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 12 -->
+            <tr class="frame-12">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 13 -->
+            <tr class="frame-13">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 14 -->
+            <tr class="frame-14">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 15 -->
+            <tr class="frame-15">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 16 - Bold border -->
+            <tr class="frame-16">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 17 -->
+            <tr class="frame-17">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 18 -->
+            <tr class="frame-18">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 19 -->
+            <tr class="frame-19">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 20 -->
+            <tr class="frame-20">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 21 -->
+            <tr class="frame-21">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 22 -->
+            <tr class="frame-22">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 23 -->
+            <tr class="frame-23">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 24 - Double line with enhanced styling -->
+            <tr class="frame-24">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 25 -->
+            <tr class="frame-25">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 26 -->
+            <tr class="frame-26">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 27 -->
+            <tr class="frame-27">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 28 -->
+            <tr class="frame-28">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 29 -->
+            <tr class="frame-29">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 30 -->
+            <tr class="frame-30">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 31 -->
+            <tr class="frame-31">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 32 - Bold border -->
+            <tr class="frame-32">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 33 -->
+            <tr class="frame-33">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 34 -->
+            <tr class="frame-34">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 35 -->
+            <tr class="frame-35">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 36 -->
+            <tr class="frame-36">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 37 -->
+            <tr class="frame-37">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 38 -->
+            <tr class="frame-38">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 39 -->
+            <tr class="frame-39">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 40 - Bold border -->
+            <tr class="frame-40">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 41 -->
+            <tr class="frame-41">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 42 -->
+            <tr class="frame-42">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 43 -->
+            <tr class="frame-43">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 44 -->
+            <tr class="frame-44">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 45 -->
+            <tr class="frame-45">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 46 -->
+            <tr class="frame-46">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 47 -->
+            <tr class="frame-47">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+            <!-- Row 48 - Double line -->
+            <tr class="frame-48">
+                <td class="action-col"></td>
+                <td class="frame-col"></td>
+                <td class="dialogue-col"></td>
+                <td class="sound-col"></td>
+                <td class="technical-col"></td>
+                <td class="extra1-col"></td>
+                <td class="extra2-col"></td>
+                <td class="frame-col"></td>
+                <td class="camera-col"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="footer">
+        Bold lines mark 8-frame intervals. Double lines mark 24-frame intervals (24fps). Left columns track character actions, middle columns for technical notes, right for camera moves.
+    </div>
+</body>
+</html>

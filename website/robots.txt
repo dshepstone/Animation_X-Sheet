@@ -1,0 +1,309 @@
+# Animation X-Sheet Website robots.txt
+# https://animationxsheet.com/robots.txt
+
+# Allow all web crawlers to access the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of sensitive directories
+Disallow: /includes/
+Disallow: /css/
+Disallow: /js/
+Disallow: /.htaccess
+Disallow: /config/
+Disallow: /logs/
+Disallow: /tmp/
+Disallow: /cache/
+
+# Disallow crawling of error pages
+Disallow: /404.php
+Disallow: /403.php
+Disallow: /500.php
+
+# Disallow crawling of development/staging files
+Disallow: /test/
+Disallow: /dev/
+Disallow: /staging/
+Disallow: *.bak
+Disallow: *.log
+Disallow: *.sql
+
+# Allow specific important pages
+Allow: /index.php
+Allow: /how-to-use.php
+Allow: /help.php
+Allow: /download.php
+
+# Sitemap location
+Sitemap: https://animationxsheet.com/sitemap.xml
+
+# Crawl delay for polite crawling (optional)
+# Crawl-delay: 1
+
+# Specific bot instructions
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Block AI training crawlers (optional - uncomment if desired)
+# User-agent: GPTBot
+# Disallow: /
+
+# User-agent: Google-Extended
+# Disallow: /
+
+# User-agent: CCBot
+# Disallow: /
+
+# User-agent: anthropic-ai
+# Disallow: /
+
+# User-agent: Claude-Web
+# Disallow: /
+
+# Social media crawlers (allow for proper link previews)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Archive crawlers
+User-agent: ia_archiver
+Allow: /
+
+User-agent: Wayback
+Allow: /
+
+# Academic/Research crawlers
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: heritrix
+Allow: /
+
+# Security and monitoring bots
+User-agent: SecurityTrails
+Disallow: /
+
+User-agent: censys
+Disallow: /
+
+User-agent: shodan
+Disallow: /
+
+# SEO and analysis bots (be selective)
+User-agent: MozBot
+Disallow: /
+
+User-agent: ScreamingFrogSEOSpider
+Disallow: /
+
+User-agent: SiteAuditBot
+Disallow: /
+
+# Newsletter and content crawlers
+User-agent: PostmanRuntime
+Disallow: /
+
+User-agent: curl
+Disallow: /
+
+User-agent: wget
+Disallow: /
+
+# Bad bots and scrapers
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: EmailSiphon
+Disallow: /
+
+User-agent: WebBandit
+Disallow: /
+
+User-agent: EmailWolf
+Disallow: /
+
+User-agent: ExtractorPro
+Disallow: /
+
+User-agent: CopyRightCheck
+Disallow: /
+
+User-agent: WebsiteExtractor
+Disallow: /
+
+User-agent: WebsiteQuester
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: WebReaper
+Disallow: /
+
+User-agent: WebSauger
+Disallow: /
+
+User-agent: Website Quester
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: NetMechanic
+Disallow: /
+
+User-agent: URLSpiderPro
+Disallow: /
+
+User-agent: CherryPicker
+Disallow: /
+
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: WebEnhancer
+Disallow: /
+
+User-agent: WebmasterWorldForumBot
+Disallow: /
+
+User-agent: NPBot
+Disallow: /
+
+User-agent: QueryN Metasearch
+Disallow: /
+
+User-agent: Openfind data gathere
+Disallow: /
+
+User-agent: Openfind
+Disallow: /
+
+User-agent: Xenu's Link Sleuth
+Disallow: /
+
+User-agent: Zeus
+Disallow: /
+
+User-agent: RepoMonkey Bait & Tackle
+Disallow: /
+
+User-agent: Microsoft URL Control
+Disallow: /
+
+User-agent: Openbot
+Disallow: /
+
+User-agent: URL Control
+Disallow: /
+
+User-agent: Zeus Link Scout
+Disallow: /
+
+User-agent: Zeus 32297 Webster Pro V2.9 Win32
+Disallow: /
+
+User-agent: Webster Pro
+Disallow: /
+
+User-agent: EroCrawler
+Disallow: /
+
+User-agent: LinkScan/8.1a Unix
+Disallow: /
+
+User-agent: Keyword Density/0.9
+Disallow: /
+
+User-agent: Kenjin Spider
+Disallow: /
+
+User-agent: Iron33/1.0.2
+Disallow: /
+
+User-agent: Bookmark search tool
+Disallow: /
+
+User-agent: GetRight/4.2
+Disallow: /
+
+User-agent: FairAd Client
+Disallow: /
+
+User-agent: Gaisbot
+Disallow: /
+
+User-agent: Aqua_Products
+Disallow: /
+
+User-agent: Radiation Retriever 1.1
+Disallow: /
+
+User-agent: Flaming AttackBot
+Disallow: /
+
+User-agent: Oracle Ultra Search
+Disallow: /
+
+User-agent: MSIECrawler
+Disallow: /
+
+User-agent: PerMan
+Disallow: /
+
+User-agent: searchpreview
+Disallow: /
