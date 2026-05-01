@@ -104,9 +104,9 @@
                 <li>Manage projects in the hosted application without downloading files.</li>
             </ul>
             <div class="actions">
-                <a class="button" href="/app/index.html">Launch Animation X-Sheet</a>
+                <a class="button" href="https://animationxsheet.com/app/" target="_blank" rel="noopener noreferrer">Launch Animation X-Sheet</a>
             </div>
-            <p class="helper">The application opens from <strong>/public_html/app/index.html</strong> on the host server.</p>
+            <p class="helper">The live app launches from <strong>https://animationxsheet.com/app/</strong> on the Hostinger server, while the source code remains available on <a href="https://github.com/dshepstone/Animation_X-Sheet" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
         </section>
     </main>
 </body>
